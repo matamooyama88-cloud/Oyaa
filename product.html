@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products — GNOCE Jewelry</title>
+    <meta name="description"
+        content="Browse GNOCE's complete fine jewelry collection — handcrafted necklaces, custom charms, and fine rings for every occasion.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --gold: #c9a84c;
+            --gold-light: #e8c96d;
+            --gold-dim: rgba(201, 168, 76, 0.22);
+            --gold-border: rgba(201, 168, 76, 0.45);
+            --dark: #080808;
+            --dark-card: #141416;
+            --line: #26262a;
+            --text: #f0ede8;
+            --muted: rgba(240, 237, 232, 0.65);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--text);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Top Announcement */
+        .announce {
+            background: linear-gradient(90deg, #8b6f28, var(--gold), #8b6f28);
+            color: #000;
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+            padding: 7px 12px;
+            letter-spacing: 0.04em;
+        }
+
+        /* Navbar */
+        nav {
+            background: rgba(8, 8, 8, 0.94);
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 50px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        nav h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            color: var(--gold);
+            font-weight: 700;
+            letter-spacing: 0.06em;
+        }
+
+        nav h1 span {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 22px;
+            align-items: center;
+        }
+
+        nav ul li a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.25s;
+            padding: 4px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: var(--gold);
+            border-color: var(--gold);
+        }
+
+        /* Hero Banner */
+        .hero {
+            position: relative;
+            height: 48vh;
+            min-height: 340px;
+            background: linear-gradient(rgba(0, 0, 0, 0.72), rgba(8, 8, 8, 0.95)), url('bgimage.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .hero-content h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-content p {
+            color: var(--gold-light);
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto 24px;
+            line-height: 1.6;
+        }
+
+        .hero-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-filter {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 22px;
+            background: rgba(201, 168, 76, 0.15);
+            border: 1px solid var(--gold-border);
+            color: var(--gold-light);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+
+        .btn-filter:hover {
+            background: var(--gold);
+            color: #000;
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        .products-section {
+            padding: 60px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 15px;
+        }
+
+        .section-header-text h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 34px;
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .section-header-text p {
+            color: var(--muted);
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        /* Product Grid (Uniform sizing for every product) */
+        .product-grid {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            gap: 25px;
+            overflow-x: auto;
+            padding-bottom: 25px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold) var(--line);
+        }
+
+        .product-grid::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .product-grid::-webkit-scrollbar-track {
+            background: var(--line);
+            border-radius: 4px;
+        }
+
+        .product-grid::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 4px;
+        }
+
+        /* Card Container - Strict Same Size */
+        .product-grid .card {
+            flex: 0 0 280px;
+            width: 280px;
+            scroll-snap-align: start;
+        }
+
+        .card {
+            background: var(--dark-card);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.5);
+            border-color: var(--gold-border);
+        }
+
+        /* Image Wrapper - Exact same picture size for every product */
+        .card-img-wrap {
+            width: 280px;
+            height: 250px;
+            overflow: hidden;
+            background: #101012;
+            position: relative;
+        }
+
+        .card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-img-wrap img {
+            transform: scale(1.06);
+        }
+
+        .badge-tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(0, 0, 0, 0.75);
+            border: 1px solid var(--gold-border);
+            color: var(--gold);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            backdrop-filter: blur(4px);
+        }
+
+        /* Card Content */
+        .card-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-content h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+            min-height: 2.8em;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-content .meta-info {
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+
+        .price-row {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .price {
+            color: var(--gold);
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .btn-buy {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: var(--gold);
+            color: #000;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.25s ease;
+        }
+
+        .btn-buy:hover {
+            background: var(--gold-light);
+            transform: scale(1.03);
+        }
+
+        /* Footer */
+        footer {
+            background: #050505;
+            color: #ffffff;
+            padding: 50px 50px 25px;
+            border-top: 1px solid var(--line);
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-grid h5 {
+            color: var(--gold);
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .footer-grid ul {
+            list-style: none;
+        }
+
+        .footer-grid ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-grid ul li a {
+            color: #ffffff;
+            font-size: 13px;
+            text-decoration: none;
+            transition: color 0.25s;
+        }
+
+        .footer-grid ul li a:hover {
+            color: var(--gold);
+        }
+
+        footer .bottom {
+            text-align: center;
+            font-size: 12px;
+            color: #888888;
+            padding-top: 22px;
+            letter-spacing: 0.03em;
+        }
+
+        @media (max-width: 800px) {
+            nav {
+                flex-direction: column;
+                gap: 16px;
+                padding: 20px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 16px;
+            }
+
+            .products-section {
+                padding: 40px 20px;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Announcement Bar -->
+    <div class="announce">Your story, beautifully told &middot; 60-day returns &middot; Free shipping over R800</div>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <h1>GNOCE <span>Jewelry</span></h1>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html" class="active">Products</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="frequently-asked-questions.html">FAQ</a></li>
+            <li><a href="customer-care.html">Care</a></li>
+            <li><a href="contacts.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>GNOCE Product Store</h2>
+            <p>Every piece is sculpted to tell your personal story. Explore our handcrafted signature necklaces and fine
+                rings.</p>
+            <div class="hero-nav">
+                <a href="#necklaces" class="btn-filter"><i class="fa-solid fa-gem"></i> Featured Necklaces</a>
+                <a href="#rings" class="btn-filter"><i class="fa-solid fa-ring"></i> Fine Rings</a>
+                <a href="index.html" class="btn-filter"><i class="fa-solid fa-house"></i> Back to Home</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="product-grid">
+        <section class="products-section" id="rings">
+            <div class="section-header">
+                <div class="section-header-text">
+                    <h3>Fine Ring Collection</h3>
+                    <p>Nature-inspired bands, pear-cut solitaires, and statement gold rings.</p>
+                </div>
+            </div>
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h2>GNOCE PRODUCTS</h2>
+                    <p>We love seeing your beautiful shots with Gnoce jewelry!</p>
+                </div>
+            </section>
+            <!-- ================= ROW 1: FEATURED NECKLACES ================= -->
+            <!-- ROW 1: Necklaces -->
+            <section class="products">
+                <h2>Featured Necklaces</h2>
+
+                <div class="product-grid">
+
+                    <!-- Necklace 1 -->
+                    <div class="card">
+                        <img src="Gnoce harry potter hufferpuff badger.jpg" alt="Gnoce Harry Potter Hufflepuff Badger">
+                        <div class="card-content">
+                            <h3>Harry Potter Hufflepuff Badger</h3>
+                            <div class="price">R 1,644.00</div>
+                            <a href="https://www.google.com/aclk?sa=L&ai=DChsSEwj0qfCv_bOXAxW1noMHHcW8K_UYACICCAEQDRoCZWY&co=1&ase=2&gclid=CjwKCAjwirLWBhBBEiwAlItbErmMU7D0g1t7e_AC98AAcG0cFo4w41KEtgZU2g_cbzu7C48W0yZJHRoCDcQQAvD_BwE&cid=CAASugHkaGUbEaly0MsqWvXvIdCiDdDHhKaErLNNvYVd3V95xloUrb5D4z24yaZFmCLMK1pRPpVYY3kjDjDWNhjCeoo6oRGCMqw92b0BraPfMTrxi64WkcJjnsQBgnmMm64irwvQ_Kf6Rk1247bYRCR8OKTJ3-82eb_wooXc_FBlnObMwl5er6EAd8ZU5uzNvU3xBFZukoJv3cJ9BflQtp8cbCHY2UMlMH3mIUmQwj45jJ6TjbAZlBcwvkd0xTo&cce=2&category=acrcp_v1_32&sig=AOD64_3K8oOr26JYqjKgWv36Kz8HlbjfKA&ctype=5&q=&nis=4&ved=2ahUKEwjCgumv_bOXAxWs87sIHZuALZIQ5bgDKAB6BAgJEAs&adurl="
+                                class="btn">Buy Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Necklace 2 -->
+                    <div class="card">
+                        <img src="spy x family yor forger pendant.jpg" alt="Spy x Family Yor Forger Pendant">
+                        <div class="card-content">
+                            <h3>Spy x Family Yor Forger Pendant</h3>
+                            <div class="price">R 1,229.00</div>
+                            <a href="https://www.google.com/aclk?sa=L&ai=DChsSEwiAwvLc_LOXAxWwOwYAHXrbPD0YACICCAEQFhoCd3M&co=1&ase=2&gclid=CjwKCAjwirLWBhBBEiwAlItbEiKlgPo6u4R27mXd5JYg_tAhmTk6t_AoSUTms5l3mWEDMfCVV8Ue3xoCaGMQAvD_BwE&cid=CAASugHkaGUUIZ-rlVDGdK8bUn9Q3bEAUXAdgE_I6SP8CetMDjkrC9VqAAAnRUfLEatTwLxiOJT4hzmO_odyDHdqFp7XZ6Fqhfc38PAbHDMZNbVSLRd2CmxTNe-ZWpm053JFV9BEiJ7oFpXHDHkSC_kMk-A9B-2RH00HIFARv2M0UxuHAJDg7nEm6MK2NSF2DWZvc43W4PVejSr44IsMRhMigqs-ieUYk6mAqvrg_V_TI2rzJm8PMPnQpLos-PE&cce=2&category=acrcp_v1_32&sig=AOD64_1dmrVLjgP_cc82AunfL5sjXA_01Q&ctype=5&q=&nis=4&ved=2ahUKEwiQ7Ovc_LOXAxVy_7sIHa2xBXoQ5bgDKAB6BAgKEAs&adurl="
+                                class="btn">Buy Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Necklace 3 -->
+                    <div class="card">
+                        <img src="gnoce Engravable birthstone bouquet.jpg" alt="GNOCE Engravable Birthstone Bouquet">
+                        <div class="card-content">
+                            <h3>Engravable Birthstone Bouquet</h3>
+                            <div class="price">R 1,567.00</div>
+                            <a href="https://www.google.com/aclk?sa=L&ai=DChsSEwjop8iG_bOXAxXwmYMHHXKuGewYACICCAEQDRoCZWY&co=1&ase=2&gclid=CjwKCAjwirLWBhBBEiwAlItbEka1W__-veuWPpMW6mxOPyMb9l43lyF8wAO6xkgpbnQBZg_5wwRdbRoCbGkQAvD_BwE&cid=CAASugHkaDFMYfPga_XYVPplLdC5gXGtuhtz_PlNpJE8cylbU4XqfJon-TvfSFX3T57fHtPygU52MQAzdmTZUhoWG7VDQyVKuwmGw9dtRFS9PU49EYclg8BHxI1fAqozsIxaQDF499Z5JvMw440cBim4DM9aSDEwwGAheTowmf2a9eubDpp_qWbyU8QVgAMWVdWW0_NXt-Jofn9ydXwh0aLulUhEPnTPoW3wJ-yqgJ2M3myUbfKIQ2a8K0s9u-0&cce=2&category=acrcp_v1_32&sig=AOD64_0BSkqBIwSa2etC7U7c_hv67wo4fQ&ctype=5&q=&nis=4&ved=2ahUKEwjJzsGG_bOXAxUVgf0HHZsQExMQ5bgDKAB6BAgMEAs&adurl="
+                                class="btn">Buy Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Necklace 4 -->
+                    <div class="card">
+                        <img src="GNOCE ANCHOR HEART BAR NECKLACE.jpg" alt="GNOCE Anchor Heart Bar Necklace">
+                        <div class="card-content">
+                            <h3>Anchor Heart Bar Necklace</h3>
+                            <div class="price">R 1,187.00</div>
+                            <a href="https://www.google.com/aclk?sa=L&ai=DChsSEwijq6_G_bOXAxXFkoMHHeEEJlUYACICCAEQCBoCZWY&co=1&ase=2&gclid=CjwKCAjwirLWBhBBEiwAlItbEjIAJ_1xoQtRqU--J6hnt8KYHqN-u4r5_hDq0DL8XYEQxOrPDU1edhoCRVoQAvD_BwE&cid=CAASugHkaNUmSVeBzMAe1jAJ9Q5yDVmUvm1LRR_mqC11AGqj-vWAW9Ts-bIATrb4-qBeM0TIJBKzeoHMVbLBPb7WBhJR_wnOdP61Fp4-3GDK0jkAL82VBwmKg0USThxYW-M_SF2r2VNTFAJOycNZiM6UV8OhP4rw9xz1PID6cboLb8bjPdTXAxBgkVQz_89wpQgxveBGbHJl5Dec2BZDnyycWmrZEhg3we5qFSw0MZ0d90ur9dczg9TrqUpwPFI&cce=2&category=acrcp_v1_32&sig=AOD64_2ece8P6vn1-w7GsUNJYB2gNF0ZXw&ctype=5&q=&nis=4&ved=2ahUKEwjp3KjG_bOXAxWfhP0HHciRJDwQ5bgDKAB6BAgMEAs&adurl="
+                                class="btn">Buy Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Necklace 5 -->
+                    <div class="card">
+                        <img src="GNOCE Barbie pink Heart.jpg" alt="GNOCE Barbie Pink Heart Necklace">
+                        <div class="card-content">
+                            <h3>Barbie Pink Heart Necklace</h3>
+                            <div class="price">R 1,450.00</div>
+                            <a href="https://www.google.com/aclk?sa=L&ai=DChsSEwjMl4j__bOXAxXXnYMHHdYFDlUYACICCAEQBRoCZWY&co=1&ase=2&gclid=CjwKCAjwirLWBhBBEiwAlItbEv2BllfryZZmnbRrxBu_usQyCXFl-vKGDNGoteM7Y5mJchhRCsrNJhoCdpMQAvD_BwE&cid=CAASugHkaJ7MGMXOmrY5CsQdmtVcm0TbiBDaUIKV5jmAlOh65inp1PqGgQEaNP7vYSLDoFFsXPUuRhHsT-GLDTXPPjaf0GcI3Hs-_VYUekG1AW1ZZ1YQaVJ_yiVlCtb8ddeGlurfIQJMdxZYcLYv1DlSINsfRhpMYGQ7DZzLrnp9n5D5GwQDakXD8uy_lEaqaBFgg6ZipN3Fode9PROjE4fQ4IdivkBUUvGlkx9WR6FPMr3AOEb-1jeKzLkzUcE&cce=2&category=acrcp_v1_32&sig=AOD64_2wS6DFI-1r65hQq5oUsPQog2vRhA&ctype=5&q=&nis=4&ved=2ahUKEwjchIH__bOXAxXOgv0HHc-8IIoQ5bgDKAB6BAgMEAs&adurl="
+                                class="btn">Buy Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Necklace 6 -->
+                    <div class="card">
+                        <img src="gnoce with you together.jpg" alt="Gnoce With You Together Necklace">
+                        <div class="card-content">
+                            <h3>Gnoce With You Together</h3>
+                            <div class="price">R 1,644.00</div>
+                            <a href="https://www.google.com/aclk?sa=L&ai=DChsSEwjh2dao_rOXAxXuGQYAHSMSFtoYACICCAEQCBoCd3M&co=1&ase=2&gclid=CjwKCAjwirLWBhBBEiwAlItbEqHNXWbPf5joSGGQ8y-cbXK0NEv7e8dLUJG2StCiya4nug826UJVBxoCw28QAvD_BwE&cid=CAASugHkaKDwm_6StAJvddBgV5M7XQJp5tsZ7KCLC42h-fYedMV0yCBGOOGxSq6C9f5hdyYw80HHusiNmnNlbZuT7_5qqS4zlt_BBxR07JCX6SPf8BoZqgLdo5NoWbEQhcjklzBrrmJd6i5c_Q8dmpXZQU9Ee5ky9tCy_tZnwdEcvTsKWYlNNH0Ibig5FMYnn7kH8Qw2Y1eY2XIg7-MS35_w_9Drm7U5AlQEd7qEYlr0yqto-civiMqVgxXKtXk&cce=2&category=acrcp_v1_32&sig=AOD64_1ONlv3GzrlpmPa0aVzd64zy8aAxg&ctype=5&q=&nis=4&ved=2ahUKEwiewdCo_rOXAxXO_7sIHXNFARgQ5bgDKAB6BAgMEAs&adurl="
+                                class="btn">Buy Now</a>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <!-- ================= ROW 2: FINE RINGS ================= -->
+            <!-- ROW 2: Rings-->
+            <section class="products">
+                <h2>Featured Rings</h2>
+
+                <div class="product-grid">
+
+                    <!-- Ring 1 -->
+                    <div class="card">
+                        <img src="Gnoce Leaf Pear-cut Engagement ring.png" alt="Gnoce Leaf Pear-cut Engagement Ring">
+                        <div class="card-content">
+                            <span class="tag">Sterling Silver</span>
+                            <h3>Gnoce Leaf Pear-cut Engagement Ring</h3>
+                            <div class="price">From R 1,493.00</div>
+                            <a href="https://www.google.com/aclk?sa=L&ai=DChsSEwjO7eOjgbSXAxWJgIMHHVufAPwYACICCAEQDBoCZWY&co=1&ase=2&gclid=CjwKCAjwirLWBhBBEiwAlItbEqXXPoeMwobOGaNTGR-O0nih3ywgLm97NW5mNcuNpflI8Xvg2KB1shoC4zoQAvD_BwE&cid=CAASugHkaLo4iubrWBYv75zy26XKea9HO04iGGh51frztpbNS5dMLGWGgC0Ej9DY86vC6mm0mwEMdW5XLJRTEu7c-BWDPt92nNaUnXYwWdnHNNfwCzOr8yg5VsGj5FXfSC6e64K_J9Ar0b3S2jHVvkmZ0EwJfoP3O2nkfuZM_WKzvjwCaGrNlXuq9nxYQ8Yj0kj2a5kcbeHdaAIQumAEChwWcDf19OdjqkR9iFeBX1bV_gZ27vLFo_22l09Ivzg&cce=2&category=acrcp_v1_32&sig=AOD64_2neFP6Bb2SqG3SmKkCo00U8wH1Sw&ctype=5&q=&nis=4&ved=2ahUKEwifqN2jgbSXAxWe_rsIHUnlIIQQ5bgDKAB6BAgNEAs&adurl="
+                                class="btn">Buy Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Ring 2 (Best Seller) -->
+                    <div class="card">
+                        <img src="Gnoce Nature-Inspired twig Pear-cut.png"
+                            alt="Gnoce Nature-Inspired Twig Pear-cut Ring">
+                        <div class="card-content">
+                            <span class="tag">&#9733; Best Seller</span>
+                            <h3>Gnoce Nature-Inspired Twig Pear-cut</h3>
+                            <div class="price">From R 1,520.00</div>
+                            <a href="https://www.google.com/aclk?sa=L&ai=DChsSEwjO7eOjgbSXAxWJgIMHHVufAPwYACICCAEQChoCZWY&co=1&ase=2&gclid=CjwKCAjwirLWBhBBEiwAlItbEoKZIIglJBMwLohg4sx7EOLuH5phOqRhQ3GEVCfSgXQAhhZug3iWvBoCMG0QAvD_BwE&cid=CAASugHkaLo4iubrWBYv75zy26XKea9HO04iGGh51frztpbNS5dMLGWGgC0Ej9DY86vC6mm0mwEMdW5XLJRTEu7c-BWDPt92nNaUnXYwWdnHNNfwCzOr8yg5VsGj5FXfSC6e64K_J9Ar0b3S2jHVvkmZ0EwJfoP3O2nkfuZM_WKzvjwCaGrNlXuq9nxYQ8Yj0kj2a5kcbeHdaAIQumAEChwWcDf19OdjqkR9iFeBX1bV_gZ27vLFo_22l09Ivzg&cce=2&category=acrcp_v1_32&sig=AOD64_14hg3TrIJ7hcbvlwL6Q10p4Tx97Q&ctype=5&q=&nis=4&ved=2ahUKEwifqN2jgbSXAxWe_rsIHUnlIIQQ5bgDKAB6BAgNEBI&adurl="
+                                class="btn">Buy Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Ring 3 -->
+                    <div class="card">
+                        <img src="Nature-inspired leaf pear-cut.png" alt="Nature-Inspired Leaf Pear-cut Ring">
+                        <div class="card-content">
+                            <span class="tag">Rose Gold</span>
+                            <h3>Nature-Inspired Leaf Pear-cut</h3>
+                            <div class="price">From R 1,544.00</div>
+                            <a href="https://www.google.com/aclk?sa=L&ai=DChsSEwi7m4H9i7SXAxU_ooMHHX7qOlgYACICCAEQChoCZWY&co=1&ase=2&gclid=CjwKCAjwirLWBhBBEiwAlItbEi87_m7PMv2_lnAk1dM2AdafVBx--WQ3hEhL4It-dVZ3JjXRrQqtfxoCbRcQAvD_BwE&cid=CAASugHkaH5xQ9wo6nukA0E8OJfnBGq9KBLAff_Keil4yn8KDAhnRxMzMTEB5KFri7RyYjs_jxi656Zyx0hGmJCGsqx13hXkPPP2PZY2XnLQBrkDU4NHaRZIi1wwxdNyFd5HUuTNECwYUgsR5bJhyD8NYXSI9vXEoEWEr9Z73orMRYEkH99iEfWKnP-TAKvAXY1rkzyQxo5nj4zIOXxBpXnn5Bv_QSKMbZlPeJXjtOsjgiMy9DHZmEy0RBJOYak&cce=2&category=acrcp_v1_32&sig=AOD64_3HQvR_mu_RkcDoLpJ05dDO0z_8EA&ctype=5&q=&nis=4&ved=2ahUKEwjEoPr8i7SXAxW4gf0HHSGPKScQ5bgDKAB6BAgJEAs&adurl="
+                                class="btn">Buy Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Ring 4 -->
+                    <div class="card">
+                        <img src="Gnoce Nature-inspired flower&Vine.png"
+                            alt="Gnoce Nature-inspired Flower and Vine Ring">
+                        <div class="card-content">
+                            <span class="tag">Gold</span>
+                            <h3>Gnoce Nature-inspired Flower &amp; Vine</h3>
+                            <div class="price">From R 1,393.00</div>
+                            <a href="https://www.google.com/aclk?sa=L&ai=DChsSEwi7m4H9i7SXAxU_ooMHHX7qOlgYACICCAEQCRoCZWY&co=1&ase=2&gclid=CjwKCAjwirLWBhBBEiwAlItbEgfTwMSDAg7wvb7-RyNlqKiDMTYOTH9xy7RmhDm9SGivObt-mKd2FxoCZFEQAvD_BwE&cid=CAASugHkaH5xQ9wo6nukA0E8OJfnBGq9KBLAff_Keil4yn8KDAhnRxMzMTEB5KFri7RyYjs_jxi656Zyx0hGmJCGsqx13hXkPPP2PZY2XnLQBrkDU4NHaRZIi1wwxdNyFd5HUuTNECwYUgsR5bJhyD8NYXSI9vXEoEWEr9Z73orMRYEkH99iEfWKnP-TAKvAXY1rkzyQxo5nj4zIOXxBpXnn5Bv_QSKMbZlPeJXjtOsjgiMy9DHZmEy0RBJOYak&cce=2&category=acrcp_v1_32&sig=AOD64_0qvzzTD3dDHJdr5bSQSRMeBJEpkg&ctype=5&q=&nis=4&ved=2ahUKEwjEoPr8i7SXAxW4gf0HHSGPKScQ5bgDKAB6BAgJECc&adurl="
+                                class="btn">Buy Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Ring 5 (Best Seller) -->
+                    <div class="card">
+                        <img src="Gnoce Nature-inspired Leaf&Floral Marquise.png"
+                            alt="Gnoce Nature-inspired Leaf and Floral Marquise Ring">
+                        <div class="card-content">
+                            <span class="tag">&#9733; Best Seller</span>
+                            <h3>Gnoce Nature-inspired Leaf &amp; Floral Marquise</h3>
+                            <div class="price">From R 4,994.00</div>
+                            <a href="https://www.google.com/aclk?sa=L&ai=DChsSEwiI8LjZjrSXAxUbmGgJHcwrKCIYACICCAEQDBoCd2Y&co=1&ase=2&gclid=CjwKCAjwirLWBhBBEiwAlItbEg5EI8Iv9hRVfyPFa5TJ3xm54Xwh3CLdWzENykpsXzUw6feHki8ojxoC5bMQAvD_BwE&cid=CAASugHkaAoQU9pKE2x6LxZqqRcvkC4hHHDFaKteP_Io_iU9O27t-08ItcE1c5bTE8qJx9IiT0QoGxLRGzzPRXBYX-rinZoh-RZFBMzJKD8zEPDhc3fpAMMnz2l27-pfg5AjNYBpmzwFymZt9s5VGa0Hfku2kFsgwlUfDZnS_wZN_IOxbRUL2UNfwr7ioVnaovSvakdkssVAmoeE69TDsQ_wRj_fvR-EFWU4bu3t23cFymW8G1wDhWvtRPGazts&cce=2&category=acrcp_v1_32&sig=AOD64_2UwhvRLbgeZMFHI4falJrdll6AAQ&ctype=5&q=&nis=4&ved=2ahUKEwiJn7HZjrSXAxVA_7sIHezEMOQQ5bgDKAB6BAgNEAs&adurl="
+                                class="btn">Buy Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Ring 6 -->
+                    <div class="card">
+                        <img src="leaf&Vine round-cut blue.png" alt="Leaf and Vine Round-cut Blue Ring">
+                        <div class="card-content">
+                            <span class="tag">Platinum &amp; Gem</span>
+                            <h3>Leaf &amp; Vine Round-cut Blue</h3>
+                            <div class="price">From R 1,850.00</div>
+                            <a href="https://www.google.com/aclk?sa=L&ai=DChsSEwiQovqjkLSXAxUcmmgJHS_uJKUYACICCAEQBxoCd2Y&co=1&ase=2&gclid=CjwKCAjwirLWBhBBEiwAlItbEiXJ1JnLauLc1OapJK50kWCg0BXsOx0JsFBSMR0Ykhg8PXu6rtK3kRoCmP8QAvD_BwE&cid=CAASugHkaC4y3YYsCmkOpozInxxJHZ4AqXXxY89CO5aaDqCp--VoH1wEueJd8m-DjF0RVaqJbRdQlcWizz4HwMOEKdngE0CEyQK5gbBjvpqP7TALOzo9KZOGBIEUdVnPz4MfTefw03LVfUMwlx71nG43hlqknfG8eKbwNNAVKxw_sGipnphDdzbh6mIpEZB5-CW6VH2LTImwY-iLG3Ri56AqR0X4ssOj-M5v2cbIEeg9FMVjTcHlDrTx3TRHzPE&cce=2&category=acrcp_v1_32&sig=AOD64_22uw00zPDmKjxFSUy8rKocQWJ8Ig&ctype=5&q=&nis=4&ved=2ahUKEwjymfCjkLSXAxWphv0HHRAEPXsQ5bgDKAB6BAgREAs&adurl="
+                                class="btn">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer>
+                <div class="footer-grid">
+                    <div>
+                        <h5>Shop</h5>
+                        <ul>
+                            <li><a href="products.html">All Jewelry</a></li>
+                            <li><a href="#necklaces">Necklaces</a></li>
+                            <li><a href="#rings">Rings</a></li>
+                            <li><a href="products.html">Charms &amp; Bracelets</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5>Support</h5>
+                        <ul>
+                            <li><a href="frequently-asked-questions.html">FAQ</a></li>
+                            <li><a href="customer-care.html">Shipping Info</a></li>
+                            <li><a href="customer-care.html">Returns Policy</a></li>
+                            <li><a href="contacts.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5>About</h5>
+                        <ul>
+                            <li><a href="about.html">Our Story</a></li>
+                            <li><a href="services.html">Services</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5>Working Hours</h5>
+                        <ul>
+                            <li style="color:#ffffff;">Mon &ndash; Fri: 9AM &ndash; 5PM</li>
+                            <li style="color:#ffffff;">Saturday: 9AM &ndash; 2PM</li>
+                            <li style="color:#ffffff;">Sunday: Closed</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5>Follow Us</h5>
+                        <ul>
+                            <li><a href="https://facebook.com">Facebook</a></li>
+                            <li><a href="https://instagram.com">Instagram</a></li>
+                            <li><a href="https://whatsapp.com">WhatsApp</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <p>&copy; 2026 GNOCE Jewelry. All Rights Reserved.</p>
+                </div>
+            </footer>
+
+</body>
+
+</html>
